@@ -57,6 +57,9 @@
   <ItemGroup>
      <Compile Include="Assets\Sripts\AttackControls.cs" />
      <Compile Include="Assets\Sripts\AttackObject.cs" />
+     <Compile Include="Assets\Sripts\AttackObjectEditor.cs" />
+     <Compile Include="Assets\Sripts\BasicBoss.cs" />
+     <Compile Include="Assets\Sripts\CombatControls.cs" />
      <Compile Include="Assets\Sripts\PlayerControls.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Zach/Documents/RustedGames/git/ButtonMasherSupreme/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

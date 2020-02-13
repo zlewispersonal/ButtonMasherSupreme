@@ -468,6 +468,7 @@ GameObject:
   - component: {fileID: 791765283}
   - component: {fileID: 791765287}
   - component: {fileID: 791765284}
+  - component: {fileID: 791765288}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -599,7 +600,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpSpeed: 5
-  Speed: 5
+  Speed: 10
+--- !u!114 &791765288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791765282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a407dc00ff32d5448e7b0ffd411a8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &987496634
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +706,7 @@ GameObject:
   - component: {fileID: 1056546420}
   - component: {fileID: 1056546423}
   - component: {fileID: 1056546422}
+  - component: {fileID: 1056546424}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -738,7 +752,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7184937692380568076, guid: df5af713ab7a5e64f8b1eb41ade7aebf,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -812,6 +826,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1056546424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056546419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88ac223dc4652fd44ba5235d43e51dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 8
 --- !u!1 &1581112106
 GameObject:
   m_ObjectHideFlags: 0
