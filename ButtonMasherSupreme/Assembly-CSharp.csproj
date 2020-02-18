@@ -55,9 +55,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Sripts\AttackControls.cs" />
+     <Compile Include="Assets\ComboTool\ComboNode.cs" />
+     <Compile Include="Assets\ComboTool\ComboTool.cs" />
+     <Compile Include="Assets\ComboTool\Connection.cs" />
+     <Compile Include="Assets\ComboTool\ConnectionPoint.cs" />
      <Compile Include="Assets\Sripts\AttackObject.cs" />
-     <Compile Include="Assets\Sripts\AttackObjectEditor.cs" />
      <Compile Include="Assets\Sripts\BasicBoss.cs" />
      <Compile Include="Assets\Sripts\CombatControls.cs" />
      <Compile Include="Assets\Sripts\PlayerControls.cs" />

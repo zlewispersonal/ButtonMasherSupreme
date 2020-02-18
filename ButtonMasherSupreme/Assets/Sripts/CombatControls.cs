@@ -31,8 +31,14 @@ public class CombatControls : MonoBehaviour
         if(InputDelay <= 0.0f)
             GetInput();
 
+        //Debug drawing hitbox
         if (HeldAttack != null)
-            DebugHitBox(Color.green);
+        {
+            if(HeldAttack.collider_type == AttackObject.ColliderType.Box)
+                DebugHitBox(Color.green);
+            else if (HeldAttack.collider_type == AttackObject.ColliderType.Circle)
+                DebugHitCircle(Color.green);
+        }
 
         ProcessCollision();
     }
@@ -45,6 +51,12 @@ public class CombatControls : MonoBehaviour
         Debug.DrawLine(center + size, new Vector3(center.x - size.x, center.y + size.y, 0.0f), c);
         Debug.DrawLine(center - size, new Vector3(center.x + size.x, center.y - size.y, 0.0f), c);
         Debug.DrawLine(center + size, new Vector3(center.x + size.x, center.y - size.y, 0.0f), c);
+    }
+
+    void DebugHitCircle(Color c)
+    {
+        Vector3 center = transform.position + new Vector3(HeldAttack.center_distance.x, HeldAttack.center_distance.y, 0.0f);
+        Gizmos.DrawSphere(center, HeldAttack.radius);
     }
 
     //Function that goes through the timers and does actions
@@ -70,23 +82,35 @@ public class CombatControls : MonoBehaviour
         if(SpawnHitBox && SpawnHitBoxTimer <= 0.0f)
         {
             SpawnHitBox = false;
+            Collider2D enemy = null;
+            Vector2 spawn_position = new Vector2(transform.position.x + HeldAttack.center_distance.x, transform.position.y + HeldAttack.center_distance.y);
 
-            //Debug stuff
-            DebugHitBox(Color.red);
+            if (HeldAttack.collider_type == AttackObject.ColliderType.Box)
+            {
+                //Debug stuff
+                DebugHitBox(Color.red);
 
-            Collider2D enemy = Physics2D.OverlapBox(new Vector2(transform.position.x + HeldAttack.center_distance.x, 
-                                                                transform.position.y + HeldAttack.center_distance.y), 
-                                                    HeldAttack.size,
-                                                    HeldAttack.angle,
-                                                    LayerMask.GetMask("Enemy"));
+                enemy = Physics2D.OverlapBox(spawn_position,
+                                             HeldAttack.size,
+                                             HeldAttack.angle,
+                                             LayerMask.GetMask("Enemy"));
+            }
+            else if(HeldAttack.collider_type == AttackObject.ColliderType.Circle)
+            {
+                //Debug stuff
+                DebugHitCircle(Color.red);
+
+                enemy = Physics2D.OverlapCircle(spawn_position,
+                                                HeldAttack.radius,
+                                                LayerMask.GetMask("Enemy"));
+            }
+
             if (enemy != null)
             {
                 Debug.Log("HIT");
                 BasicBoss boss_health = enemy.GetComponent(typeof(BasicBoss)) as BasicBoss;
                 boss_health.Health -= HeldAttack.damage;
                 Debug.Log(boss_health.Health);
-                //BasicBoss eh = enemy.transform.parent.gameObject.GetComponent(typeof(BasicBoss)) as BasicBoss;
-                //eh.EnemyHealth -= HeldAttack.damage;
             }
             else
                 Debug.Log("Miss");
