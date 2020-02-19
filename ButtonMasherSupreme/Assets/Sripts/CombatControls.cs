@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.IO;
 
 public class CombatControls : MonoBehaviour
 {
@@ -165,8 +166,29 @@ public class CombatControls : MonoBehaviour
     //Special function to find start to a combo
     void FindStartCombo(string attack)
     {
-        if (attack == "Attack1")
-            HeldAttack = (AttackObject)AssetDatabase.LoadAssetAtPath("Assets/Attack Objects/Combo_Base_1.asset", typeof(AttackObject));
+        List<AttackObject> objs = new List<AttackObject>();
+        DirectoryInfo info = new DirectoryInfo("Assets/Attack Objects/");
+        FileInfo[] files = info.GetFiles();
+
+        //Loop through and get a list of start combos
+        foreach (FileInfo f in files)
+        {
+            if (!f.Name.Contains("meta"))
+            {
+                AttackObject a = (AttackObject)AssetDatabase.LoadAssetAtPath("Assets/Attack Objects/" + f.Name, typeof(AttackObject));
+                if (a.parent == null)
+                    objs.Add(a);
+            }
+        }
+
+        foreach(AttackObject a in objs)
+        {
+            if(a.button == attack)
+            {
+                HeldAttack = a;
+                return;
+            }
+        }
     }
 
     //Reads through the object and applies all details

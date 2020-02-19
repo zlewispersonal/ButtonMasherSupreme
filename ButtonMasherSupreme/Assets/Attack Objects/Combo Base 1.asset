@@ -15,8 +15,6 @@ MonoBehaviour:
   button: Attack1
   valid_moves:
   - {fileID: 11400000, guid: 980c1dd9901956742b31deb7cc2945c8, type: 2}
-  - {fileID: 11400000, guid: b2a53ff0a4d96744c98dd55a8c0a8abb, type: 2}
-  - {fileID: 11400000, guid: 3e1e41585ec7d59418a40295185836ab, type: 2}
   parent: {fileID: 0}
   attack_animation: {fileID: 0}
   combo_drop_timer: 0.5
